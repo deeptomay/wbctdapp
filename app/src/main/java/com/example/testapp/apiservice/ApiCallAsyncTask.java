@@ -19,24 +19,21 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 
-public class ApiCallAsyncTask extends AsyncTask<String,Void,String> {
-
+public class ApiCallAsyncTask extends AsyncTask<String, Void, String> {
 
     private GSTINSearchActivity gstin_activity;
 
     ProgressDialog p;
 
-
-    private String response_data="";
+    private String response_data = "";
 
     public ApiCallAsyncTask(GSTINSearchActivity gstin_activity) {
         this.gstin_activity = gstin_activity;
     }
 
-    public String getApiResponse(){
+    public String getApiResponse() {
         return response_data;
     }
-
 
     @Override
     protected void onPreExecute() {
@@ -52,9 +49,11 @@ public class ApiCallAsyncTask extends AsyncTask<String,Void,String> {
     @Override
     protected String doInBackground(String... params) {
 
-        String urlString = "http://10.153.36.162:2525/WBCTD_API/getgstndetail?gstn=" + params[0];
+        String urlString = "http://10.153.45.133:2525/WBCTD_API/getgstndetail?gstn=" + params[0];
+        // String urlString = "http://10.153.36.161:2525/WBCTD_API/getgstndetail?gstn="
+        // + params[0];
 
-        System.out.println("gstn>>>>"+params[0]);
+        System.out.println("gstn>>>>" + params[0]);
 
         StringBuilder response = new StringBuilder();
         try {
@@ -68,7 +67,7 @@ public class ApiCallAsyncTask extends AsyncTask<String,Void,String> {
             connection.setRequestMethod("POST");
 
             // Set headers if needed (optional)
-//            connection.setRequestProperty("Accept", "application/json");
+            // connection.setRequestProperty("Accept", "application/json");
 
             // Check response code
             int responseCode = connection.getResponseCode();
@@ -81,7 +80,6 @@ public class ApiCallAsyncTask extends AsyncTask<String,Void,String> {
             } else { // Error handling
                 reader = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
             }
-
 
             String line;
             while ((line = reader.readLine()) != null) {
@@ -108,7 +106,8 @@ public class ApiCallAsyncTask extends AsyncTask<String,Void,String> {
         try {
             // Parse the JSON array
             ObjectMapper objectMapper = new ObjectMapper();
-            List<GSTDetails> gstDetailsList = objectMapper.readValue(result, new TypeReference<List<GSTDetails>>() {});
+            List<GSTDetails> gstDetailsList = objectMapper.readValue(result, new TypeReference<List<GSTDetails>>() {
+            });
 
             // Extract values from the first object in the array
             if (!gstDetailsList.isEmpty()) {
@@ -120,23 +119,19 @@ public class ApiCallAsyncTask extends AsyncTask<String,Void,String> {
                 String legalName = gstDetails.getLegal_name();
                 String address = gstDetails.getAddress();
 
-                //address="14 Beliaghata Main Rd, kolkata 700015";// for local check
-                gstin_activity.setResulttoUI(gstin,tradeName,legalName,address);
-
+                // address="14 Beliaghata Main Rd, kolkata 700015";// for local check
+                gstin_activity.setResulttoUI(gstin, tradeName, legalName, address);
 
                 p.hide();
 
-            }
-            else{
+            } else {
                 p.hide();
 
-                Toast.makeText(gstin_activity,"No data found!",Toast.LENGTH_SHORT).show();
+                Toast.makeText(gstin_activity, "No data found!", Toast.LENGTH_SHORT).show();
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
 
     }
 }

@@ -35,7 +35,8 @@ public class SaveSurveyAsyncTask extends AsyncTask<String,Void,String> {
 
     @Override
     protected String doInBackground(String... params) {
-        String urlString = "http://10.153.36.162:2525/WBCTD_API/getDataInsert?usr_cd=" + params[0]+"&gstin=" + params[1]+"&physical_add=" + params[2]+"&lat=" + params[3]+"&lon=" + params[4];
+        String urlString = "http://10.153.45.133:2525/WBCTD_API/getDataInsert?usr_cd=" + params[0]+"&gstin=" + params[1]+"&physical_add=" + params[2]+"&lat=" + params[3]+"&lon=" + params[4];
+//        String urlString = "http://10.153.36.161:2525/WBCTD_API/getDataInsert?usr_cd=" + params[0]+"&gstin=" + params[1]+"&physical_add=" + params[2]+"&lat=" + params[3]+"&lon=" + params[4];
 
         System.out.println("user_id>>>>"+params[0]);
         System.out.println("phy_addrs>>>>"+params[2]);

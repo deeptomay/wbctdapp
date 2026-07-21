@@ -38,7 +38,8 @@ Login2Activity loginActivity;
     @Override
     protected String doInBackground(String... params) {
 
-        String urlString = "http://10.153.36.162:2525/WBCTD_API/Login?usrid=" + params[0]+"&pwd=" + params[1];
+        String urlString = "http://10.153.45.133:2525/WBCTD_API/Login?usrid=" + params[0]+"&pwd=" + params[1];
+//        String urlString = "http://10.153.36.161:2525/WBCTD_API/Login?usrid=" + params[0]+"&pwd=" + params[1];
 
         System.out.println("user_id>>>>"+params[0]);
 

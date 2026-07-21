@@ -46,7 +46,8 @@ public class UploadAsysncTask extends AsyncTask<String,Void,String> {
     protected String doInBackground(String... params) {
 
         StringBuilder response = new StringBuilder();
-        String requestURL = "http://10.153.36.162:2525/WBCTD_API/getPictureUpload"; // Change to your endpoint
+        String requestURL = "http://10.153.45.133:2525/WBCTD_API/getPictureUpload"; // Change to your endpoint
+//        String requestURL = "http://10.153.36.161:2525/WBCTD_API/getPictureUpload"; // Change to your endpoint
         String filePath = params[2]; // Change to your file path
         String charset = "UTF-8";
         String boundary = "===" + System.currentTimeMillis() + "===";
